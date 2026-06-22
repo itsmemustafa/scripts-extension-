@@ -1,5 +1,5 @@
 # Dispatch Box 📋
-<img width="764" height="1200" alt="image" src="https://github.com/user-attachments/assets/2e3680b3-7ec9-489c-a62b-a68faffe2391" />
+<img width="383" height="600" alt="image" src="https://github.com/user-attachments/assets/2e3680b3-7ec9-489c-a62b-a68faffe2391" />
 
 A Chrome Extension (Manifest V3) for dispatch agents to quickly copy and paste ready-made scripts in Arabic, English, and Kurdish (Sorani).
 
