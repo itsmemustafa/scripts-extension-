@@ -1,0 +1,444 @@
+:root {
+  --primary-dark: #1a2e3b;
+  --primary-amber: #f59e0b;
+  --primary-amber-hover: #d97706;
+
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+
+  --bg-body: #f1f5f9;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.09);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --transition-fast: 0.15s ease;
+
+  --driver-color: #0284c7;
+  --driver-bg: #eff8ff;
+  --driver-border: #bae0fd;
+
+  --customer-color: #16a34a;
+  --customer-bg: #f0fdf4;
+  --customer-border: #bbf7d0;
+
+  --general-color: #7c3aed;
+  --general-bg: #f5f3ff;
+  --general-border: #ddd6fe;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 420px;
+  height: 620px;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+  border-radius: var(--radius-lg);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ── Header ── */
+.app-header {
+  background: var(--primary-dark);
+  color: #fff;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #fff;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.icon-btn:focus-visible {
+  outline: 2px solid var(--primary-amber);
+  outline-offset: 1px;
+}
+
+.gear-icon {
+  width: 19px;
+  height: 19px;
+}
+
+/* ── Controls ── */
+.controls-section {
+  padding: 14px 18px 12px;
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 9px 6px;
+  border: 1.5px solid var(--border-color);
+  background: #f8fafc;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tab-btn:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+}
+
+.tab-btn.active[data-category="driver"] {
+  background: var(--driver-bg);
+  color: var(--driver-color);
+  border-color: var(--driver-border);
+}
+
+.tab-btn.active[data-category="customer"] {
+  background: var(--customer-bg);
+  color: var(--customer-color);
+  border-color: var(--customer-border);
+}
+
+.tab-btn.active[data-category="general"] {
+  background: var(--general-bg);
+  color: var(--general-color);
+  border-color: var(--general-border);
+}
+
+/* ── Scripts container ── */
+.scripts-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg-body);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+/* ── Empty state ── */
+.empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-muted);
+  font-size: 13px;
+  gap: 6px;
+}
+
+/* ── Script Cards ── */
+.script-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+}
+
+.script-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  border-radius: 3px 0 0 3px;
+}
+
+.script-card.driver::before {
+  background: var(--driver-color);
+}
+
+.script-card.customer::before {
+  background: var(--customer-color);
+}
+
+.script-card.general::before {
+  background: var(--general-color);
+}
+
+.script-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
+}
+
+/* ── Card Header ── */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.card-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.driver .card-badge {
+  background: var(--driver-bg);
+  color: var(--driver-color);
+  border: 1px solid var(--driver-border);
+}
+
+.customer .card-badge {
+  background: var(--customer-bg);
+  color: var(--customer-color);
+  border: 1px solid var(--customer-border);
+}
+
+.general .card-badge {
+  background: var(--general-bg);
+  color: var(--general-color);
+  border: 1px solid var(--general-border);
+}
+
+/* ── Card Body ── */
+.card-body {
+  background: #ffffff;
+  border: 1px solid #e9eef5;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #1e293b;
+  max-height: 88px;
+  overflow-y: auto;
+  user-select: text;
+}
+
+.text-ar,
+.text-ckb {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.text-en {
+  direction: ltr;
+  text-align: left;
+}
+
+/* ── Card Footer ── */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Language switcher ── */
+.lang-switcher {
+  display: flex;
+  background: #f1f5f9;
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 4px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.lang-btn:hover {
+  color: var(--text-main);
+}
+
+.lang-btn.active {
+  background: #fff;
+  color: var(--text-main);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.driver .lang-btn.active {
+  color: var(--driver-color);
+}
+
+.customer .lang-btn.active {
+  color: var(--customer-color);
+}
+
+.general .lang-btn.active {
+  color: var(--general-color);
+}
+
+/* ── Copy button ── */
+.copy-btn {
+  flex: 1;
+  background: var(--primary-dark);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background var(--transition-fast), transform 0.1s ease;
+}
+
+.copy-btn:hover {
+  background: #24404f;
+}
+
+.copy-btn:active {
+  transform: scale(0.97);
+}
+
+.copy-btn.copied {
+  background: #10b981;
+}
+
+.driver .copy-btn {
+  background: var(--driver-color);
+}
+
+.driver .copy-btn:hover {
+  background: #0270a8;
+}
+
+.customer .copy-btn {
+  background: var(--customer-color);
+}
+
+.customer .copy-btn:hover {
+  background: #138039;
+}
+
+.general .copy-btn {
+  background: var(--general-color);
+}
+
+.general .copy-btn:hover {
+  background: #6d28d9;
+}
+
+.driver .copy-btn.copied,
+.customer .copy-btn.copied,
+.general .copy-btn.copied {
+  background: #10b981;
+}
+
+/* ── Focus & motion ── */
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--primary-amber);
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
